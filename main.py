@@ -61,8 +61,9 @@ def main():
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
-            t, tr = display_on_screen(fruits[i].position[0] -1, fruits[i].position[1] - 1, f"{3}", "")
-            screen.blit(t,tr)
+            t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(list[2]), "y")
+            screen.blit(t, tr)  
+
 
         pygame.display.update()
         clock.tick(10)
@@ -70,3 +71,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
