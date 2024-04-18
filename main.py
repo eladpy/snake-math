@@ -2,6 +2,7 @@ import pygame
 from logic.Fruit import Fruit
 from logic.Snake import Snake
 from Constants import *
+from logic.math import *
 
 # Text and fon
 def display_on_screen(x_pos,y_pos, display_str):
@@ -17,16 +18,16 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Snake Game')
-    # Pay Attention
+
     clock = pygame.time.Clock()
-    SCORE = 0
+    list = math()
     snake = Snake()
     fruits = []
 
     ##create number of fruits
     for i in range(FRUIT_QUANTITY):
         fruits.append(Fruit())
-
+    fruits[0]
     while True:
         # Event loop
         for event in pygame.event.get():
@@ -48,10 +49,12 @@ def main():
         for i in range(len(fruits)):    
             if snake.get_head_position() == fruits[i].position:
                 snake.length += 1
+                list = math()
                 for j  in range(len(fruits)):
                     fruits[j].randomize_position()
-                
-        text,textRect = display_on_screen(200,200,'W')          
+        
+    
+        text,textRect = display_on_screen(200,200, to_string(list[0],list[1],list[-1]))          
         screen.fill(COLORS["WHITE"])
         screen.blit(text,textRect)
         snake.draw(screen)
