@@ -11,7 +11,6 @@ textRect = text.get_rect()
 textRect.center = (TEXT_X // 2 +250, TEXT_Y // 2-40 )
 
 
-
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
