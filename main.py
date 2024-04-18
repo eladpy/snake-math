@@ -3,12 +3,24 @@ from logic.Fruit import Fruit
 from logic.Snake import Snake
 from Constants import *
 
+# Text and font
+# pygame.init()
+# font = pygame.font.Font('freesansbold.ttf',22)
+# text = font.render('w', True, COLORS["GREEN"])
+# textRect = text.get_rect()
+# textRect.center = (TEXT_X // 2 +250, TEXT_Y // 2-40 )
 
-pygame.init()
-font = pygame.font.Font('freesansbold.ttf',22)
-text = font.render('w', True, COLORS["GREEN"])
-textRect = text.get_rect()
-textRect.center = (TEXT_X // 2 +250, TEXT_Y // 2-40 )
+# Functions
+def display_on_screen(x_pos,y_pos, display_str):
+    pos = (x_pos, y_pos)
+    pygame.init()
+    font = pygame.font.Font('freesansbold.ttf',22)
+    text = font.render(display_str, True, COLORS["GREEN"])
+    textRect = text.get_rect()
+    textRect.center = (x_pos // 2 +250, y_pos// 2-40 )
+    return text,textRect
+
+
 
 
 def main():
@@ -47,10 +59,9 @@ def main():
                 for j  in range(len(fruits)):
                     fruits[j].randomize_position()
                 
-               
-               
+        text,textRect = display_on_screen(200,200,'W')          
         screen.fill(COLORS["WHITE"])
-        screen.blit(text, textRect)
+        screen.blit(text,textRect)
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
