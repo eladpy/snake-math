@@ -28,5 +28,5 @@ def math():
 
     # list[num1, num2, answer, start, end]
     # for index in range()
-    return [num1, num2, answer, ]
+    return [num1, num2, answer]
 
