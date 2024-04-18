@@ -3,6 +3,7 @@ from logic.Fruit import Fruit
 from logic.Snake import Snake
 from Constants import *
 from logic.math import *
+from random import randint
 
 # Text and fon
 def display_on_screen(x_pos,y_pos, display_str, center):
@@ -24,11 +25,11 @@ def main():
     list = math()
     snake = Snake()
     fruits = []
-
+    random = randint(list[3], list[4])
     ##create number of fruits
     for i in range(FRUIT_QUANTITY):
         fruits.append(Fruit())
-    fruits[0]
+    
     while True:
         # Event loop
         for event in pygame.event.get():
@@ -46,13 +47,14 @@ def main():
                     snake.turn(DIRECTIONS["RIGHT"])
 
         snake.move()
-        # This is the case when the snake is eaten the fruite
-        for i in range(len(fruits)):    
-            if snake.get_head_position() == fruits[i].position:
-                snake.length += 1
-                list = math()
-                for j  in range(len(fruits)):
-                    fruits[j].randomize_position()
+        # This is the case when the snake is eaten the fruite    
+        if snake.get_head_position() == fruits[0].position:
+            snake.length += 1
+            list = math()
+            for j  in range(len(fruits)):
+                fruits[j].randomize_position()
+        if snake.get_head_position() == fruits[1].position:
+            pygame.QUIT()
         
     
         text,textRect = display_on_screen(350, 25 , to_string(list[0],list[1],list[-1]), "y")          
@@ -61,7 +63,10 @@ def main():
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
-            t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(list[2]), "y")
+            if i == 0:
+                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(list[2]), "y")
+            else:
+                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(random), "y")
             screen.blit(t, tr)  
 
 
