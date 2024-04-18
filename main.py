@@ -29,9 +29,11 @@ def main():
     pygame.display.set_caption('Snake Game')
     # Pay Attention
     clock = pygame.time.Clock()
-
+    SCORE = 0
     snake = Snake()
     fruits = []
+
+    ##create number of fruits
     for i in range(FRUIT_QUANTITY):
         fruits.append(Fruit())
 
