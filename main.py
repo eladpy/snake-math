@@ -5,13 +5,14 @@ from Constants import *
 from logic.math import *
 
 # Text and fon
-def display_on_screen(x_pos,y_pos, display_str):
+def display_on_screen(x_pos,y_pos, display_str, center):
     pos = (x_pos, y_pos)
     pygame.init()
     font = pygame.font.Font('freesansbold.ttf',22)
     text = font.render(display_str, True, COLORS["GREEN"])
     textRect = text.get_rect()
-    textRect.center = (x_pos // 2 +250, y_pos// 2-40 )
+    if center == "y":
+        textRect.center = (x_pos, y_pos)
     return text,textRect
 
 def main():
@@ -54,13 +55,14 @@ def main():
                     fruits[j].randomize_position()
         
     
-        text,textRect = display_on_screen(200,200, to_string(list[0],list[1],list[-1]))          
+        text,textRect = display_on_screen(350, 25 , to_string(list[0],list[1],list[-1]), "y")          
         screen.fill(COLORS["WHITE"])
         screen.blit(text,textRect)
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
-        
+            t, tr = display_on_screen(fruits[i].position[0] -1, fruits[i].position[1] - 1, f"{3}", "")
+            screen.blit(t,tr)
 
         pygame.display.update()
         clock.tick(10)
