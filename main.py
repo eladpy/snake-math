@@ -25,6 +25,7 @@ def main():
     list = math()
     snake = Snake()
     fruits = []
+    SCORE = 0
     random = randint(list[3], list[4])
     ##create number of fruits
     for i in range(FRUIT_QUANTITY):
@@ -53,20 +54,24 @@ def main():
             list = math()
             for j  in range(len(fruits)):
                 fruits[j].randomize_position()
+            SCORE+=1
         if snake.get_head_position() == fruits[1].position:
             pygame.QUIT()
         
     
-        text,textRect = display_on_screen(350, 25 , to_string(list[0],list[1],list[-1]), "y")          
+        text,textRect = display_on_screen(350, 25 , to_string(list[0],list[1],list[-1]), "y")
+        scoret, scoreRect = display_on_screen(100,20,f'score:{SCORE}',"y")        
         screen.fill(COLORS["WHITE"])
         screen.blit(text,textRect)
+        screen.blit(scoret,scoreRect)
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
             if i == 0:
-                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(list[2]), "y")
+                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 10, str(list[2]), "y")
             else:
-                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 20, str(random), "y")
+            
+                t, tr = display_on_screen(fruits[i].position[0] - 1, fruits[i].position[1] - 10, str(random), "y")
             screen.blit(t, tr)  
 
 
