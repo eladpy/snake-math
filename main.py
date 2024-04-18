@@ -4,6 +4,13 @@ from logic.Snake import Snake
 from Constants import *
 
 
+pygame.init()
+font = pygame.font.Font('freesansbold.ttf',22)
+text = font.render('w', True, COLORS["GREEN"])
+textRect = text.get_rect()
+textRect.center = (TEXT_X // 2 +250, TEXT_Y // 2-40 )
+
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -39,12 +46,16 @@ def main():
                 snake.length += 1
                 for j  in range(len(fruits)):
                     fruits[j].randomize_position()
+                
                
                
         screen.fill(COLORS["WHITE"])
+        screen.blit(text, textRect)
         snake.draw(screen)
         for i in range(len(fruits)):
             fruits[i].draw(screen)
+        
+        
 
         pygame.display.update()
         clock.tick(10)
